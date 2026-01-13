@@ -5,6 +5,7 @@ use bevy_asset::{
 use ciborium::from_reader;
 use serde::{Deserialize, Serialize};
 use std::marker::PhantomData;
+use bevy_reflect::TypePath;
 use thiserror::Error;
 
 /// Plugin to load your asset type `A` from "Concise Binary Object Representation" (CBOR) files.
@@ -40,6 +41,7 @@ where
 }
 
 /// Loads your asset type `A` from CBOR files
+#[derive(TypePath)]
 pub struct CborAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,
@@ -88,6 +90,7 @@ where
 }
 
 /// Saves your asset type `A` to `Cbor` files
+#[derive(TypePath)]
 pub struct CborAssetSaver<A> {
     _marker: PhantomData<A>,
 }

@@ -6,6 +6,7 @@ use postcard::{from_bytes, to_stdvec};
 use serde::{Deserialize, Serialize};
 use std::marker::PhantomData;
 use thiserror::Error;
+use bevy_reflect::TypePath;
 
 /// Plugin to load your asset type `A` from `Postcard` files.
 pub struct PostcardAssetPlugin<A> {
@@ -40,6 +41,7 @@ where
 }
 
 /// Loads your asset type `A` from `Postcard` files
+#[derive(TypePath)]
 pub struct PostcardAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,
@@ -83,6 +85,7 @@ where
 }
 
 /// Saves your asset type `A` to `Postcard` files
+#[derive(TypePath)]
 pub struct PostcardAssetSaver<A> {
     _marker: PhantomData<A>,
 }

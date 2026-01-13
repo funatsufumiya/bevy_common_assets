@@ -4,6 +4,7 @@ use bevy_asset::{Asset, AssetApp, AssetLoader, LoadContext};
 use serde_json::from_slice;
 use std::marker::PhantomData;
 use thiserror::Error;
+use bevy_reflect::TypePath;
 
 /// Plugin to load your asset type `A` from json files.
 pub struct JsonAssetPlugin<A> {
@@ -38,6 +39,7 @@ where
 }
 
 /// Loads your asset type `A` from json files
+#[derive(TypePath)]
 pub struct JsonAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,

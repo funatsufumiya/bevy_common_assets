@@ -5,6 +5,7 @@ use quick_xml::de::from_str;
 use std::marker::PhantomData;
 use std::str::from_utf8;
 use thiserror::Error;
+use bevy_reflect::TypePath;
 
 /// Plugin to load your asset type `A` from xml files.
 /// Read the [`quick_xml` docs](https://docs.rs/quick-xml/latest/quick_xml/de/) for tips on deserialization.
@@ -40,6 +41,7 @@ where
 }
 
 /// Loads your asset type `A` from xml files
+#[derive(TypePath)]
 pub struct XmlAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,

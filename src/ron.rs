@@ -4,6 +4,7 @@ use bevy_asset::{Asset, AssetApp, AssetLoader, LoadContext};
 use serde_ron::de::from_bytes;
 use std::marker::PhantomData;
 use thiserror::Error;
+use bevy_reflect::TypePath;
 
 /// Plugin to load your asset type `A` from ron files.
 pub struct RonAssetPlugin<A> {
@@ -38,6 +39,7 @@ where
 }
 
 /// Loads your asset type `A` from ron files
+#[derive(TypePath)]
 pub struct RonAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,

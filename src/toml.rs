@@ -2,6 +2,7 @@ use bevy_app::{App, Plugin};
 use bevy_asset::io::Reader;
 use bevy_asset::{Asset, AssetApp, AssetLoader, LoadContext};
 use std::marker::PhantomData;
+use bevy_reflect::TypePath;
 use std::str::from_utf8;
 use thiserror::Error;
 
@@ -38,6 +39,7 @@ where
 }
 
 /// Loads your asset type `A` from toml files
+#[derive(TypePath)]
 pub struct TomlAssetLoader<A> {
     extensions: Vec<&'static str>,
     _marker: PhantomData<A>,
